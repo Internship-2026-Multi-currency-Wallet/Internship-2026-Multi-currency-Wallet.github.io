@@ -4,96 +4,249 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Internship 2026 — Links</title>
+<title>Internship 2026 — Multi-currency Wallet</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Internship-2026-Multi-currency-Wallet/handbook/main/brands/demo/favicon.svg">
 <style>
-  :root { --bg:#f8fafc; --card:#fff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --accent:#4f46e5; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#0b1020; --card:#121a2e; --fg:#e5e7eb; --muted:#94a3b8; --line:#1f2a44; --accent:#818cf8; } }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.5; }
-  main { max-width:1100px; margin:0 auto; padding:32px 20px 60px; }
-  h1 { margin:0 0 4px; font-size:26px; }
-  p.sub { margin:0 0 28px; color:var(--muted); }
-  h2 { font-size:17px; margin:28px 0 10px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
-  .card h3 { margin:0 0 8px; font-size:14px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
-  ul { list-style:none; margin:0; padding:0; }
-  li { padding:4px 0; }
-  a { color:var(--accent); text-decoration:none; word-break:break-all; }
-  a:hover { text-decoration:underline; }
-  .note { color:var(--muted); font-size:13px; }
-  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:14px; }
-  th, td { text-align:left; padding:8px 12px; border-top:1px solid var(--line); vertical-align:top; }
-  th { background:transparent; color:var(--muted); font-weight:600; border-top:none; }
-  .wrap { overflow-x:auto; }
-  code { font-size:12px; }
+  :root {
+    --bg: #f6f7fb; --surface: #ffffff; --surface-2: #f1f3f9; --fg: #0f172a; --muted: #5b6478;
+    --line: #e4e7f0; --accent: #4f46e5; --ok: #16a34a; --down: #dc2626;
+    --shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.06);
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a0d18; --surface: #111627; --surface-2: #171d33; --fg: #e8ebf4; --muted: #96a0b8;
+      --line: #232b45; --accent: #8b85ff; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, ui-sans-serif, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero {
+    color: #fff;
+    background: radial-gradient(1200px 400px at 85% -10%, rgba(14,165,233,.55), transparent 60%),
+                radial-gradient(900px 400px at 0% 120%, rgba(245,183,0,.35), transparent 60%),
+                linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #0f766e 100%);
+  }
+  .hero .wrap { padding-top: 56px; padding-bottom: 64px; }
+  .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+  .hero h1 { margin: 14px 0 10px; font-size: clamp(30px, 4.5vw, 48px); line-height: 1.1; letter-spacing: -.02em; }
+  .hero p { margin: 0; max-width: 720px; font-size: 17px; opacity: .92; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { font-size: 13px; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: transform .12s ease; }
+  .btn.primary { background: #fff; color: #312e81; }
+  .btn.ghost { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: #fff; }
+  .btn:hover { transform: translateY(-1px); }
+
+  nav.bar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav.bar .wrap { display: flex; gap: 16px; align-items: center; height: 56px; }
+  nav.bar .links { display: flex; gap: 4px; overflow-x: auto; }
+  nav.bar .links a { font-size: 14px; color: var(--muted); padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
+  nav.bar .links a:hover { color: var(--fg); background: var(--surface-2); }
+  .search { margin-left: auto; position: relative; }
+  .search input { width: 220px; padding: 8px 12px 8px 32px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: inherit; font-size: 14px; }
+  .search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+  @media (max-width: 640px) { .search input { width: 140px; } }
+
+  main .wrap { padding-bottom: 64px; }
+  section { padding-top: 36px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  h2 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
+  .hint { color: var(--muted); font-size: 13px; }
+
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+  a.tile { display: flex; gap: 14px; align-items: flex-start; padding: 16px; transition: transform .12s ease, border-color .12s ease; }
+  a.tile:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .icon { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--surface-2); color: var(--accent); font-size: 18px; }
+  .tile h3 { margin: 0 0 2px; font-size: 15px; }
+  .tile p { margin: 0; font-size: 13px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); margin-left: 6px; vertical-align: 1px; }
+
+  .start { display: grid; gap: 14px; grid-template-columns: 1.3fr 1fr; }
+  @media (max-width: 860px) { .start { grid-template-columns: 1fr; } }
+  .start .card { padding: 20px; }
+  .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  .steps li { counter-increment: s; display: flex; gap: 12px; padding: 8px 0; }
+  .steps li::before { content: counter(s); flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); }
+  .steps a { color: var(--accent); font-weight: 600; }
+  .clients { display: grid; gap: 10px; }
+  .client { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); }
+  .client img, .client .ph { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+  .client .ph { display: grid; place-items: center; background: var(--line); font-weight: 700; }
+  .client b { display: block; font-size: 14px; }
+  .client span { font-size: 12.5px; color: var(--muted); }
+
+  .envs { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .env { overflow: hidden; }
+  .env-head { display: flex; gap: 12px; align-items: center; padding: 16px; color: #fff; }
+  .env-head img { height: 34px; background: rgba(255,255,255,.95); border-radius: 9px; padding: 3px 6px; }
+  .env-head .t { font-weight: 700; }
+  .env-head .s { font-size: 12.5px; opacity: .9; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .env ul { list-style: none; margin: 0; padding: 6px 0; }
+  .env li { display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-top: 1px solid var(--line); font-size: 14px; }
+  .env li:first-child { border-top: none; }
+  .env li .name { flex: 1; }
+  .env li a { color: var(--accent); font-weight: 600; font-size: 13px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
+  .dot.ok { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 20%, transparent); }
+  .dot.down { background: var(--down); }
+
+  footer { color: var(--muted); font-size: 13px; padding: 24px 0 40px; border-top: 1px solid var(--line); }
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.3" fill="currentColor"/></svg>
+      devBrother · Internship 2026
+    </div>
+    <h1>Multi-currency Wallet</h1>
+    <p>A white-label wallet and currency exchange for fictional fintech clients — built by four interns as one team. Every repository, environment and tool is on this page.</p>
+    <div class="chips"><span class="chip">UAH</span><span class="chip">USD</span><span class="chip">EUR</span><span class="chip">PLN</span><span class="chip">USDT</span><span class="chip">NestJS · GraphQL</span><span class="chip">React · MUI</span><span class="chip">MySQL · Redis</span></div>
+    <div class="cta">
+      <a class="btn primary" href="https://notebook.google.com/notebook/b4d462f5-a443-4cd4-ba81-64e38446af8e">▶ Watch the welcome video</a>
+      <a class="btn ghost" href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook">Read the handbook</a>
+      <a class="btn ghost" href="https://app.asana.com/1/2427620016900/project/1220109449481948">Open tasks in Asana</a>
+    </div>
+  </div>
+</header>
+
+<nav class="bar">
+  <div class="wrap">
+    <div class="links">
+      <a href="#start">Start here</a><a href="#environments">Environments</a><a href="#code">Code</a><a href="#services">Services</a><a href="#infra">Infrastructure</a>
+    </div>
+    <label class="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Filter links…" aria-label="Filter links">
+    </label>
+  </div>
+</nav>
+
 <main>
-  <h1>Internship 2026 — Multi-currency Wallet</h1>
-  <p class="sub">All important links in one place. No secrets here: passwords live in Dokploy environment variables.</p>
+<div class="wrap">
 
-  <h2>Code &amp; planning</h2>
-  <div class="grid">
-    <div class="card"><h3>GitHub organization</h3><ul>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet">Organization</a></li>
-      <li><a href="https://github.com/orgs/Internship-2026-Multi-currency-Wallet/packages">Container packages (GHCR)</a></li>
-      <li><a href="https://github.com/organizations/Internship-2026-Multi-currency-Wallet/settings/secrets/actions">Organization secrets</a></li>
-    </ul></div>
-    <div class="card"><h3>Backends</h3><ul>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/wallet-core">wallet-core</a></li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/rates-service">rates-service</a></li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/treasury-service">treasury-service</a></li>
-    </ul></div>
-    <div class="card"><h3>Frontends &amp; ops</h3><ul>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/client-web">client-web</a></li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/back-office">back-office</a></li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/ops">ops</a> — local dev, CI/CD workflows</li>
-    </ul></div>
-    <div class="card"><h3>Docs &amp; mentor repos</h3><ul>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook">handbook</a> — intern documentation</li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/paygate">paygate</a> <span class="note">(private)</span></li>
-      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/mentor-tools">mentor-tools</a> <span class="note">(private)</span></li>
-    </ul></div>
-    <div class="card"><h3>Tasks</h3><ul>
-      <li><a href="https://app.asana.com/1/2427620016900/project/1220109449481948">Asana project</a></li>
-    </ul></div>
-  </div>
+  <section id="start">
+    <div class="section-head"><h2>Start here</h2><span class="hint">New to the project? Do these first.</span></div>
+    <div class="start">
+      <div class="card">
+        <ol class="steps">
+          <li><div><a href="https://notebook.google.com/notebook/b4d462f5-a443-4cd4-ba81-64e38446af8e">Watch the welcome video</a> — what we build and how we start. You can also ask the notebook questions.</div></li>
+          <li><div>Send the mentor your <b>email</b> and <b>GitHub username</b> to get access to GitHub and Asana.</div></li>
+          <li><div>Install <b>Node.js 26 LTS</b>, <b>Docker</b> (at least 4 GB memory) and <b>Git</b> — see <a href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook/blob/main/setup.md">setup</a>.</div></li>
+          <li><div>Read the <a href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook">handbook</a>: product, architecture, workflow, customizations, logging.</div></li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="section-head" style="margin-bottom:10px"><h2 style="font-size:16px">Our clients</h2><span class="hint">fictional</span></div>
+        <div class="clients">
+          <div class="client"><img alt="" src="https://raw.githubusercontent.com/Internship-2026-Multi-currency-Wallet/handbook/main/brands/demo/favicon.svg"><div><b>Demo Wallet</b><span>Default brand on staging · no customizations</span></div></div>
+          <div class="client"><img alt="" src="https://raw.githubusercontent.com/Internship-2026-Multi-currency-Wallet/handbook/main/brands/kvitka/favicon.svg"><div><b>Kvitka Bank</b><span>Ukrainian neobank · cashback, trading hours</span></div></div>
+          <div class="client"><img alt="" src="https://raw.githubusercontent.com/Internship-2026-Multi-currency-Wallet/handbook/main/brands/wisla/favicon.svg"><div><b>Wisła Transfer</b><span>Polish transfers · card fee, split the bill</span></div></div>
+          <div class="client"><div class="ph">S</div><div><b>Stablo</b><span>Crypto-friendly wallet · joins later</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Environments</h2>
-  <div class="wrap"><table>
-    <tr><th></th><th>staging <span class="note">(main, client demo)</span></th><th>kvitka-uat <span class="note">(client/kvitka-uat)</span></th><th>wisla-uat <span class="note">(client/wisla-uat)</span></th></tr>
-    <tr><td>Client app</td><td><a href="https://staging.wallet.shatori.com">staging.wallet.shatori.com</a></td><td><a href="https://kvitka-uat.wallet.shatori.com">kvitka-uat.wallet.shatori.com</a></td><td><a href="https://wisla-uat.wallet.shatori.com">wisla-uat.wallet.shatori.com</a></td></tr>
-    <tr><td>Back-office</td><td><a href="https://staging-admin.wallet.shatori.com">staging-admin…</a></td><td><a href="https://kvitka-uat-admin.wallet.shatori.com">kvitka-uat-admin…</a></td><td><a href="https://wisla-uat-admin.wallet.shatori.com">wisla-uat-admin…</a></td></tr>
-    <tr><td>wallet-core</td><td><a href="https://staging-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://staging-wallet-core.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-wallet-core.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-wallet-core.wallet.shatori.com/graphql">graphql</a></td></tr>
-    <tr><td>rates-service</td><td><a href="https://staging-rates.wallet.shatori.com/health">health</a> · <a href="https://staging-rates.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-rates.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-rates.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-rates.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-rates.wallet.shatori.com/graphql">graphql</a></td></tr>
-    <tr><td>treasury-service</td><td><a href="https://staging-treasury.wallet.shatori.com/health">health</a> · <a href="https://staging-treasury.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-treasury.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-treasury.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-treasury.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-treasury.wallet.shatori.com/graphql">graphql</a></td></tr>
-  </table></div>
+  <section id="environments">
+    <div class="section-head"><h2>Environments</h2><span class="hint">Green dot = the service answered just now</span></div>
+    <div class="envs" id="envs"></div>
+  </section>
 
-  <h2>Shared services</h2>
-  <div class="grid">
-    <div class="card"><h3>PayGate (payment sandbox)</h3><ul>
-      <li><a href="https://paygate.wallet.shatori.com">Home</a></li>
-      <li><a href="https://paygate.wallet.shatori.com/docs">Developer docs</a></li>
-      <li><a href="https://paygate.wallet.shatori.com/admin">Admin</a> · <a href="https://paygate.wallet.shatori.com/admin/merchants">Merchants</a></li>
-    </ul></div>
-    <div class="card"><h3>Observability</h3><ul>
-      <li><a href="https://logs.wallet.shatori.com">Grafana (logs)</a></li>
-    </ul></div>
-  </div>
+  <section id="code">
+    <div class="section-head"><h2>Code &amp; planning</h2><span class="hint">GitHub organization · Asana</span></div>
+    <div class="grid">
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet"><div class="icon">⌂</div><div><h3>GitHub organization</h3><p>All repositories</p></div></a>
+      <a class="card tile" href="https://app.asana.com/1/2427620016900/project/1220109449481948"><div class="icon">✓</div><div><h3>Asana project</h3><p>Epics, features and subtasks</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/wallet-core"><div class="icon">⚙</div><div><h3>wallet-core</h3><p>Core: users, staff, settings, ledger, money</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/rates-service"><div class="icon">↗</div><div><h3>rates-service</h3><p>Exchange rates: sources, aggregation, stream</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/treasury-service"><div class="icon">⚖</div><div><h3>treasury-service</h3><p>Platform currency position &amp; hedging</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/client-web"><div class="icon">◧</div><div><h3>client-web</h3><p>The user's app</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/back-office"><div class="icon">▤</div><div><h3>back-office</h3><p>The staff app</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/ops"><div class="icon">⛭</div><div><h3>ops</h3><p>Local dev script, CI/CD workflows</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook"><div class="icon">✎</div><div><h3>handbook</h3><p>Intern documentation &amp; brand assets</p></div></a>
+      <a class="card tile" href="https://github.com/Internship-2026-Multi-currency-Wallet/paygate"><div class="icon">₴</div><div><h3>paygate <span class="tag">private</span></h3><p>Payment sandbox source (mentor)</p></div></a>
+      <a class="card tile" href="https://github.com/orgs/Internship-2026-Multi-currency-Wallet/packages"><div class="icon">⬢</div><div><h3>Container packages</h3><p>Docker images (GHCR)</p></div></a>
+    </div>
+  </section>
 
-  <h2>Infrastructure</h2>
-  <div class="grid">
-    <div class="card"><h3>Hosting</h3><ul>
-      <li><a href="https://dokploy.shatori.com">Dokploy</a> — project “Internship 2026”</li>
-      <li><a href="https://dash.cloudflare.com">Cloudflare</a> — Pages (frontends), DNS for <code>shatori.com</code></li>
-    </ul></div>
-    <div class="card"><h3>Later</h3><ul>
-      <li><a href="https://resend.com">Resend</a> — email (task E1-8)</li>
-      <li><a href="https://console.cloud.google.com">Google Cloud Console</a> — Google sign-in (task E1-5)</li>
-    </ul></div>
-  </div>
+  <section id="services">
+    <div class="section-head"><h2>Shared services</h2><span class="hint">Used by every environment</span></div>
+    <div class="grid">
+      <a class="card tile" href="https://paygate.wallet.shatori.com/docs"><div class="icon">💳</div><div><h3>PayGate docs</h3><p>Payment API, webhooks, test cards</p></div></a>
+      <a class="card tile" href="https://paygate.wallet.shatori.com/admin"><div class="icon">⚿</div><div><h3>PayGate admin <span class="tag">mentor</span></h3><p>Payments, webhook log, merchants</p></div></a>
+      <a class="card tile" href="https://logs.wallet.shatori.com"><div class="icon">📈</div><div><h3>Grafana</h3><p>Logs of every service</p></div></a>
+      <a class="card tile" href="https://notebook.google.com/notebook/b4d462f5-a443-4cd4-ba81-64e38446af8e"><div class="icon">▶</div><div><h3>Welcome briefing</h3><p>Video and Q&amp;A notebook</p></div></a>
+    </div>
+  </section>
+
+  <section id="infra">
+    <div class="section-head"><h2>Infrastructure</h2><span class="hint">Hosting and accounts</span></div>
+    <div class="grid">
+      <a class="card tile" href="https://dokploy.shatori.com"><div class="icon">🐳</div><div><h3>Dokploy <span class="tag">mentor</span></h3><p>Backends, MySQL, Redis, PayGate, logging</p></div></a>
+      <a class="card tile" href="https://dash.cloudflare.com"><div class="icon">☁</div><div><h3>Cloudflare <span class="tag">mentor</span></h3><p>Pages (frontends) &amp; DNS</p></div></a>
+      <a class="card tile" href="https://resend.com"><div class="icon">✉</div><div><h3>Resend</h3><p>Email delivery · task E1-8</p></div></a>
+      <a class="card tile" href="https://console.cloud.google.com"><div class="icon">G</div><div><h3>Google Cloud</h3><p>Sign in with Google · task E1-5</p></div></a>
+    </div>
+  </section>
+
+</div>
 </main>
+
+<footer><div class="wrap">Internship 2026 · No secrets on this page — passwords and keys live in Dokploy and the team password manager.</div></footer>
+
+<script>
+  const RAW = 'https://raw.githubusercontent.com/Internship-2026-Multi-currency-Wallet/handbook/main/brands';
+  const ENVS = [
+    { id: 'staging', branch: 'main', client: 'Demo Wallet', brand: 'demo', color: 'linear-gradient(135deg,#4f46e5,#0ea5e9)' },
+    { id: 'kvitka-uat', branch: 'client/kvitka-uat', client: 'Kvitka Bank', brand: 'kvitka', color: 'linear-gradient(135deg,#1e3a8a,#b88a00)' },
+    { id: 'wisla-uat', branch: 'client/wisla-uat', client: 'Wisła Transfer', brand: 'wisla', color: 'linear-gradient(135deg,#0f766e,#e11d48)' },
+  ];
+  const host = (sub) => `https://${sub}.wallet.shatori.com`;
+  const rows = (e) => [
+    { name: 'Client app', open: host(e.id), check: host(e.id) },
+    { name: 'Back-office', open: host(`${e.id}-admin`), check: host(`${e.id}-admin`) },
+    { name: 'wallet-core', gql: host(`${e.id}-wallet-core`) + '/graphql', check: host(`${e.id}-wallet-core`) + '/health' },
+    { name: 'rates-service', gql: host(`${e.id}-rates`) + '/graphql', check: host(`${e.id}-rates`) + '/health' },
+    { name: 'treasury-service', gql: host(`${e.id}-treasury`) + '/graphql', check: host(`${e.id}-treasury`) + '/health' },
+  ];
+  const box = document.getElementById('envs');
+  for (const e of ENVS) {
+    const el = document.createElement('div');
+    el.className = 'card env';
+    el.innerHTML = `
+      <div class="env-head" style="background:${e.color}">
+        <img alt="${e.client}" src="${RAW}/${e.brand}/logo.svg">
+        <div><div class="t">${e.id} · ${e.client}</div><div class="s">branch ${e.branch}</div></div>
+      </div>
+      <ul>${rows(e).map(r => `
+        <li><span class="dot" data-check="${r.check}"></span><span class="name">${r.name}</span>
+          ${r.open ? `<a href="${r.open}">open</a>` : `<a href="${r.check}">health</a><a href="${r.gql}">graphql</a>`}</li>`).join('')}
+      </ul>`;
+    box.appendChild(el);
+  }
+  // Reachability: an opaque no-cors request resolves when the server answers at all.
+  document.querySelectorAll('.dot[data-check]').forEach(async (dot) => {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 8000);
+    try { await fetch(dot.dataset.check, { mode: 'no-cors', cache: 'no-store', signal: ctrl.signal }); dot.classList.add('ok'); dot.title = 'Reachable'; }
+    catch { dot.classList.add('down'); dot.title = 'Not reachable'; }
+    finally { clearTimeout(t); }
+  });
+  document.getElementById('q').addEventListener('input', (ev) => {
+    const q = ev.target.value.trim().toLowerCase();
+    document.querySelectorAll('a.tile, .env, .client').forEach(n => n.classList.toggle('hidden', !!q && !n.textContent.toLowerCase().includes(q)));
+  });
+</script>
 </body>
 </html>
