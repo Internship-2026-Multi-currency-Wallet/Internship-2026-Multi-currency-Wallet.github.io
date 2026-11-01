@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Internship 2026 — Links</title>
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --accent:#4f46e5; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1020; --card:#121a2e; --fg:#e5e7eb; --muted:#94a3b8; --line:#1f2a44; --accent:#818cf8; } }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.5; }
+  main { max-width:1100px; margin:0 auto; padding:32px 20px 60px; }
+  h1 { margin:0 0 4px; font-size:26px; }
+  p.sub { margin:0 0 28px; color:var(--muted); }
+  h2 { font-size:17px; margin:28px 0 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .card h3 { margin:0 0 8px; font-size:14px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  ul { list-style:none; margin:0; padding:0; }
+  li { padding:4px 0; }
+  a { color:var(--accent); text-decoration:none; word-break:break-all; }
+  a:hover { text-decoration:underline; }
+  .note { color:var(--muted); font-size:13px; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:14px; }
+  th, td { text-align:left; padding:8px 12px; border-top:1px solid var(--line); vertical-align:top; }
+  th { background:transparent; color:var(--muted); font-weight:600; border-top:none; }
+  .wrap { overflow-x:auto; }
+  code { font-size:12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Internship 2026 — Multi-currency Wallet</h1>
+  <p class="sub">All important links in one place. No secrets here: passwords live in Dokploy environment variables.</p>
+
+  <h2>Code &amp; planning</h2>
+  <div class="grid">
+    <div class="card"><h3>GitHub organization</h3><ul>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet">Organization</a></li>
+      <li><a href="https://github.com/orgs/Internship-2026-Multi-currency-Wallet/packages">Container packages (GHCR)</a></li>
+      <li><a href="https://github.com/organizations/Internship-2026-Multi-currency-Wallet/settings/secrets/actions">Organization secrets</a></li>
+    </ul></div>
+    <div class="card"><h3>Backends</h3><ul>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/wallet-core">wallet-core</a></li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/rates-service">rates-service</a></li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/treasury-service">treasury-service</a></li>
+    </ul></div>
+    <div class="card"><h3>Frontends &amp; ops</h3><ul>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/client-web">client-web</a></li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/back-office">back-office</a></li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/ops">ops</a> — local dev, CI/CD workflows</li>
+    </ul></div>
+    <div class="card"><h3>Docs &amp; mentor repos</h3><ul>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/handbook">handbook</a> — intern documentation</li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/paygate">paygate</a> <span class="note">(private)</span></li>
+      <li><a href="https://github.com/Internship-2026-Multi-currency-Wallet/mentor-tools">mentor-tools</a> <span class="note">(private)</span></li>
+    </ul></div>
+    <div class="card"><h3>Tasks</h3><ul>
+      <li><a href="https://app.asana.com/1/2427620016900/project/1220109449481948">Asana project</a></li>
+    </ul></div>
+  </div>
+
+  <h2>Environments</h2>
+  <div class="wrap"><table>
+    <tr><th></th><th>staging <span class="note">(main, client demo)</span></th><th>kvitka-uat <span class="note">(client/kvitka-uat)</span></th><th>wisla-uat <span class="note">(client/wisla-uat)</span></th></tr>
+    <tr><td>Client app</td><td><a href="https://staging.wallet.shatori.com">staging.wallet.shatori.com</a></td><td><a href="https://kvitka-uat.wallet.shatori.com">kvitka-uat.wallet.shatori.com</a></td><td><a href="https://wisla-uat.wallet.shatori.com">wisla-uat.wallet.shatori.com</a></td></tr>
+    <tr><td>Back-office</td><td><a href="https://staging-admin.wallet.shatori.com">staging-admin…</a></td><td><a href="https://kvitka-uat-admin.wallet.shatori.com">kvitka-uat-admin…</a></td><td><a href="https://wisla-uat-admin.wallet.shatori.com">wisla-uat-admin…</a></td></tr>
+    <tr><td>wallet-core</td><td><a href="https://staging-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://staging-wallet-core.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-wallet-core.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-wallet-core.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-wallet-core.wallet.shatori.com/graphql">graphql</a></td></tr>
+    <tr><td>rates-service</td><td><a href="https://staging-rates.wallet.shatori.com/health">health</a> · <a href="https://staging-rates.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-rates.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-rates.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-rates.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-rates.wallet.shatori.com/graphql">graphql</a></td></tr>
+    <tr><td>treasury-service</td><td><a href="https://staging-treasury.wallet.shatori.com/health">health</a> · <a href="https://staging-treasury.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://kvitka-uat-treasury.wallet.shatori.com/health">health</a> · <a href="https://kvitka-uat-treasury.wallet.shatori.com/graphql">graphql</a></td><td><a href="https://wisla-uat-treasury.wallet.shatori.com/health">health</a> · <a href="https://wisla-uat-treasury.wallet.shatori.com/graphql">graphql</a></td></tr>
+  </table></div>
+
+  <h2>Shared services</h2>
+  <div class="grid">
+    <div class="card"><h3>PayGate (payment sandbox)</h3><ul>
+      <li><a href="https://paygate.wallet.shatori.com">Home</a></li>
+      <li><a href="https://paygate.wallet.shatori.com/docs">Developer docs</a></li>
+      <li><a href="https://paygate.wallet.shatori.com/admin">Admin</a> · <a href="https://paygate.wallet.shatori.com/admin/merchants">Merchants</a></li>
+    </ul></div>
+    <div class="card"><h3>Observability</h3><ul>
+      <li><a href="https://logs.wallet.shatori.com">Grafana (logs)</a></li>
+    </ul></div>
+  </div>
+
+  <h2>Infrastructure</h2>
+  <div class="grid">
+    <div class="card"><h3>Hosting</h3><ul>
+      <li><a href="https://dokploy.shatori.com">Dokploy</a> — project “Internship 2026”</li>
+      <li><a href="https://dash.cloudflare.com">Cloudflare</a> — Pages (frontends), DNS for <code>shatori.com</code></li>
+    </ul></div>
+    <div class="card"><h3>Later</h3><ul>
+      <li><a href="https://resend.com">Resend</a> — email (task E1-8)</li>
+      <li><a href="https://console.cloud.google.com">Google Cloud Console</a> — Google sign-in (task E1-5)</li>
+    </ul></div>
+  </div>
+</main>
+</body>
+</html>
